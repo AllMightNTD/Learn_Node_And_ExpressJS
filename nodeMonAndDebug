@@ -1,0 +1,7 @@
+Download ở global ( máy tính ) : npm install -g nodemon 
+Download ở project : npm install --save-dev nodemon 
+- Vào file package.json -> đến phần scripts thêm vào 
+  "start": "nodemon --inspect index.js",
+
+=) Khi chạy chỉ cần : npm start ( Thay đổi gì trên tệp là cập nhật trên web luôn , đỡ phải chạy lại )
+=) Thêm thằng --inspect để debug cho nhanh =) "start": "nodemon --inspect index.js",
