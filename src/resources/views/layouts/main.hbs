@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+</head>
+<body>
+    <div class="app">
+        {{!-- Nhận dữ liệu truyền từ file khác vào --}}
+        {{!-- Dữ nguyên mặc định Header và Footer  --}}
+
+        {{!-- Tách 2 file header và footer ra  --}}
+        {{> header}}
+
+            <div class="container">
+                {{{body}}}
+            </div>
+
+            
+        {{> footer}}  
+    </div>
+</body>
+</html>
