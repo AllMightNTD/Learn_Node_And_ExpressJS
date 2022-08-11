@@ -8,7 +8,7 @@ const morgan = require('morgan')
 
 const app = express();
 
-const port = 3000;
+const port = 5000;
 
 // Trả về chính cái path của thư mục public 
 app.use(express.static(path.join(__dirname , 'public')))
