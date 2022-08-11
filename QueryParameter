@@ -1,0 +1,13 @@
+-> Truyền dữ liệu qua chính cái URL : queryparameter
+-> Param tìm kiếm : bắt đầu bằng dấu ?
+- Tên muốn đặt ( ví dụ q )
+- Thứ 3 là dấu bằng 
+- Thứ 4 là yêu cầu cần tìm 
+
+* Ví dụ https://www.google.com/search?q=F8 lap trinh
+
+- Từ params thứ 2 không dùng dấu ? , dùng dấu và (&)
+
+Ví dụ https://www.google.com/search?q=F8 lap trinh&ref=f8&author=dungnguyen
+
+queryparameter dùng cho mọi phương thức 

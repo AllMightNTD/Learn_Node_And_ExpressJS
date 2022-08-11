@@ -1,0 +1,12 @@
+- Khi ấn button trong form => tạo ra một ?q = với cái mình tìm kiếm
+=) Hành vi mặc định đó gọi là submit
+- Cứ cái input nào có name => lấy value của cái name đó truyền lên url dưới dạng queryparameter
+
+- Mặc định attribute của form là "GET"
+
+- Khi đặt METHOD trong form là "POST" thì tất cả các cái như refesh trang đều là POST
+
+* action : giúp submit ở một nơi khác 
+
+- Mặc định của action là "" (thể hiện việc mình submit ở đâu ) nếu không nhập hoặc để trống
+- Nếu thêm "/news" vào => submit vào trang news => có thể lấy nó ra trong query của /news
