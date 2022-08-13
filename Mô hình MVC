@@ -4,4 +4,9 @@
 * Ưu điểm : bóc tách ra 3 thành phần chính 
 
 * Views : chỉ chứa các thành phần view : html , css , ...
-* Model : tương tác với DataSource
+* Model : tương tác với DataSource ( nội dung tương tác lấy ra dữ liệu )\
+* Controller : Đi từ Browser trọc đến Websever để lưu dữ liệu , đi qua bộ định tuyến Routes , từ đó được Dispatcher qua Controller 
+* Dữ liệu được để ở Controller -> lấy ra cái view để hiển thị 
+* Từ model thì dữ liệu được lấy ra -> chuyền qua Controller và hiển thị ra View 
+
+* Từ view truyền ngược lại controler -> Browser

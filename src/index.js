@@ -7,9 +7,10 @@ const xhbr = require('express-handlebars')
 const morgan = require('morgan');
 const { log } = require('console');
 
+const routes = require('./routes')
 const app = express();
 
-const port = 5000;
+const port = 3000;
 
 // Trả về chính cái path của thư mục public 
 app.use(express.static(path.join(__dirname , 'public')))
@@ -39,47 +40,10 @@ console.log(path.join(__dirname, 'resources/views'));
 // Bấm thẻ a theo mặc định hoặc truy cập địa chỉ => get
 // Phân biệt dựa vào cái route 
 
-app.get('/', (req, res) => {
-  // render thằng home.hbs với đường dẫn là '/'
-    res.render('home');
-});
 
-// Dữ liệu 2 thằng news.hbs và home.hbs được nạp vào file main.hbs trong folder layouts
+// Route Init
+routes(app);
 
-// req : là một object có các thuộc tính trong đó có query 
-// Truy cập vào nó bằng req.query
-
-app.get('/news', (req, res) => {
-
-  // render thằng news.hbs với đường dẫn là '/news'
-  res.render('news');
-});
-
-app.get('/search', (req, res) => {
-  
-  // Lấy ra thằng object query
-  console.log(req.query)
-
-  // Lấy ra thằng "q"
-  // console.log(req.query.q)
-  // render thằng news.hbs với đường dẫn là '/news'
-  res.render('search');
-});
-
-
-// Upline một middleware lên sever , lấy dữ liệu từ form submit lên cho client
-app.use(express.urlencoded({
-  extended:true
-}))
-app.use(express.json())
-// Định nghĩa tuyến đường với phương thức post
-// Chạy vào đây khi submit form với method là "POST"
-app.post('/search' , (req, res) => {
-
-  // Lấy ra object (Form data) dữ liệu gửi đi từ form 
-  console.log(req.body);
-  res.send('')
-})
 
 
 app.listen(port , () => console.log(`Example app listening : http://localhost:${port}`));
