@@ -1,0 +1,7 @@
+
+* Viết tắt của Model View Controller 
+
+* Ưu điểm : bóc tách ra 3 thành phần chính 
+
+* Views : chỉ chứa các thành phần view : html , css , ...
+* Model : tương tác với DataSource

@@ -66,10 +66,19 @@ app.get('/search', (req, res) => {
   res.render('search');
 });
 
+
+// Upline một middleware lên sever , lấy dữ liệu từ form submit lên cho client
+app.use(express.urlencoded({
+  extended:true
+}))
+app.use(express.json())
 // Định nghĩa tuyến đường với phương thức post
 // Chạy vào đây khi submit form với method là "POST"
 app.post('/search' , (req, res) => {
-  res.render('search')
+
+  // Lấy ra object (Form data) dữ liệu gửi đi từ form 
+  console.log(req.body);
+  res.send('')
 })
 
 
