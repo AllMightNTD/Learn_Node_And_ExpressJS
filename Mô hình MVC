@@ -10,3 +10,6 @@
 * Từ model thì dữ liệu được lấy ra -> chuyền qua Controller và hiển thị ra View 
 
 * Từ view truyền ngược lại controler -> Browser
+
+* Thư mục app là thư mục chứa các Controller
+* Thư mục routes là thư mục chứa các đường dẫn để chạy các Controller
