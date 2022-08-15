@@ -1,4 +1,5 @@
-Thành Phần Trung gian : đứng ở giữa 
-- Middleware : tích hợp sẵn cho thằng query 
-- Chưa tích hợp cho thằng body 
-=> Muốn hiển thị body : thêm thằng middleware vào 
+Thành Phần Trung gian : đứng ở giữa
+
+- Middleware : tích hợp sẵn cho thằng query
+- Chưa tích hợp cho thằng body
+  => Muốn hiển thị body : thêm thằng middleware vào

@@ -8,9 +8,15 @@ const morgan = require('morgan');
 const { log } = require('console');
 
 const routes = require('./routes');
+
+const db = require('./config/db/index.js');
+
+// Connect DB
+db.connect();
+
 const app = express();
 
-const port = 3000;
+const port = 5000;
 
 // Trả về chính cái path của thư mục public
 app.use(express.static(path.join(__dirname, 'public')));

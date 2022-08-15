@@ -1,0 +1,13 @@
+Viết tắt của modal view Controller
+
+- Ưu điểm : bóc tách ra 3 thành phần chính
+
+* Views : chỉ chứa các thành phần view : html , css
+* Modal : tương tác với Database ( nội dung tương tác lấy ra dữ liệu )
+* Controller : Đi từ Browser đến Websever để lưu dữ liệu , đi qua bộ định tuyến Routes từ
+  đó được dispatcher qua Controller
+* Dữ liệu được để ở Controller -> lấy ra cái view để hiển thị
+* Từ model thì dữ liệu lấy ra -> chuyển qua Controller và hiển thị ra view
+* Từ view truyền ngược lại Controller -> Browser
+* Thư mục app là thư mục chứa các Controller
+* Thư mục Routes là thư mục chứa các đường dẫn để chạy các Controller
