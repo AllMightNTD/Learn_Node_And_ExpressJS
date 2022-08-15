@@ -48,4 +48,4 @@ console.log(path.join(__dirname, 'resources/views'));
 // Route Init
 routes(app);
 
-app.listen(port, () => console.log(`Example app listening : http://localhost:${port}`));
+app.listen(port, () => console.log(` App listening : http://localhost:${port}`));
