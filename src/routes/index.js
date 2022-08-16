@@ -1,7 +1,7 @@
 // Link thằng news đến
 const newRouter = require('./news');
 const siteRowter = require('./site');
-
+const useRouter = require('./user');
 // Route nhận vào thằng app từ bên file index chính ( express instance )
 function route(app) {
     // Dữ liệu 2 thằng news.hbs và home.hbs được nạp vào file main.hbs trong folder layouts
@@ -12,6 +12,8 @@ function route(app) {
     app.use('/news', newRouter);
 
     app.use('/', siteRowter);
+
+    app.use('/users', useRouter);
 
     // Action ---> Dispatcher  ---> Function handler ( Controller trong mô hình MVC)
 
