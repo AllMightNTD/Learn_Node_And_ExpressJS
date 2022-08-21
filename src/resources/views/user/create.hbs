@@ -1,0 +1,25 @@
+<div class='mt-4'>
+    <h3>
+        Create Users
+    </h3>
+    <form method='POST' action='/users/store'>
+        <div class='form-group'>
+            <label for='name'>Name</label>
+            <input type='text' class='form-control' value='' id='name' name='name' placeholder='Enter name' />
+            <label for='description'>Description</label>
+            <input
+                type='text'
+                class='form-control'
+                id='description'
+                name='description'
+                value=''
+                placeholder='Enter description'
+            />
+            <label for='description'>Image</label>
+            <input type='text' class='form-control' value='' id='image' name='image' />
+            <label for='description'>VideoID</label>
+            <input type='text' class='form-control' value='' id='videoID' name='videoID' />
+        </div>
+        <button type='submit' class='btn btn-primary'>Submit</button>
+    </form>
+</div>

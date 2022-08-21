@@ -5,9 +5,8 @@ const express = require('express');
 const xhbr = require('express-handlebars');
 
 const morgan = require('morgan');
-const { log } = require('console');
 
-const routes = require('./routes');
+const routes = require('./routes/index.js');
 
 const db = require('./config/db/index.js');
 
@@ -20,6 +19,10 @@ const port = 5000;
 
 // Trả về chính cái path của thư mục public
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Hỗ trợ việc gửi thông tin từ form lên sever ( middleware)
+app.use(express.urlencoded());
+app.use(express.json());
 
 app.use(morgan('combined'));
 // Thay thế xhbr() bằng xhbr.engine()

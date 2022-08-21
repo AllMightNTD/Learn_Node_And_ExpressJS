@@ -13,6 +13,24 @@ class UserController {
             })
             .catch(next);
     }
+    // GET/users/create
+    create(req, res, next) {
+        res.render('user/create');
+    }
+
+    // POST /users / store
+    // Nhan va luu du lieu
+    async store(req, res, next) {
+        try {
+            const formData = req.body;
+            const user = new User(formData);
+            user.save()
+                .then(() => res.redirect('/'))
+                .catch(() => {});
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 }
 
 // Tạo một đối tượng và export ra ngoài
