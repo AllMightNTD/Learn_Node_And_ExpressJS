@@ -1,5 +1,8 @@
-* Gửi dữ liệu từ client lên sever
-- Gửi dữ liệu không qua URL 
-- Gửi dữ liệu dưới dạng Form data , ẩn đi trên URL
-- Bất kì thẻ input , select , option , textArea : chỉ cần có name => submit gửi đi 
-- Lấy ra dữ liệu từ phía sever : req.body
+- Gửi dữ liệu từ client lên sever
+
+* Gửi dữ liệu không qua URL
+* Gửi dữ liệu dưới dạng Form data , ẩn đi trên URL
+* Bất kì thẻ input , select , option , textArea : chỉ cần có name => submit gửi đi
+* Lấy ra dữ liệu từ phía sever : req.body
+
+- Chú ý đọc DOC của thằng handlebars

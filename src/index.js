@@ -17,6 +17,10 @@ const app = express();
 
 const port = 5000;
 
+var methodOverride = require('method-override');
+
+app.use(methodOverride('_method'));
+
 // Trả về chính cái path của thư mục public
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,7 +32,17 @@ app.use(morgan('combined'));
 // Thay thế xhbr() bằng xhbr.engine()
 
 // Config lại đuôi file là .hbs
-app.engine('hbs', xhbr.engine({ extname: '.hbs' }));
+// Template engine
+app.engine(
+    'hbs',
+    xhbr.engine({
+        extname: '.hbs',
+        // Sử dụng thư viện handlebars express
+        helpers: {
+            sum: (a, b) => a + b,
+        },
+    }),
+);
 app.set('view engine', 'hbs');
 
 // Đổi đường dẫn => views trong resouces

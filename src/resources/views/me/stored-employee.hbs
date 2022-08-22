@@ -1,0 +1,33 @@
+<div class='mt-4'>
+    <h3>Khóa học của tôi</h3>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Thời gian tạo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+                <tr>
+                    {{! Lấy ra thằng chỉ mục : index }}
+
+                    {{! sum : hàm đã định nghĩa bằng template engine }}
+                    {{! 1 là đối số }}
+                    {{! Gọi hàm sum , chức năng cộng biến index lên 1 }}
+                    <th scope='col'>{{sum @index 1}}</th>
+                    <th scope='col'>{{this.name}}</th>
+                    <th scope='col'>{{this.createdAt}}</th>
+                    <th>
+                        {{! Sửa theo id }}
+                        {{! link đến trang sửa  }}
+                        <a href='/users/{{this._id}}/edit' class='btn btn-danger'>Sửa</a>
+                        <a href='' class='btn btn-danger'>Xóa</a>
+                    </th>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

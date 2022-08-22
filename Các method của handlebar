@@ -1,0 +1,6 @@
+findOne :Tìm kiếm 1 thằng theo 1 trường yêu cầu
+find : Tìm kiếm và hiển thị tất cả các document trong DB
+findById : Tìm kiếm theo ID
+updateOne : Update dữ liệu theo 1 trường chuyền vào
+
+res.redirect : thêm 1 cái key là location vào trong Response header , để điều hướng theo key truyền vào
