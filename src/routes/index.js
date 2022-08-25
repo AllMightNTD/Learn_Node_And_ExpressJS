@@ -13,7 +13,7 @@ function route(app) {
 
     app.use('/news', newRouter);
 
-    app.use('/users', useRouter);
+    app.use('/user', useRouter);
 
     app.use('/me', MeRouter);
 
