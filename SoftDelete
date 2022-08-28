@@ -1,0 +1,4 @@
+- Xóa mềm : Có thể truy vết 
+- Xóa mềm : bằng delete
+- Xóa vĩnh viễn bằng : deleteOne
+- Tìm các thằng đã xóa bằng findDeleted

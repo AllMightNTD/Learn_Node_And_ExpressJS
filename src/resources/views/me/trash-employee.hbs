@@ -1,7 +1,7 @@
 <div class='mt-4'>
     <div>
-        <h3>Khóa học của tôi</h3>
-        <a href="/me/trash/employee">Thùng rác</a>
+        <a href="/me/stored/employee">Quay lại danh sách Employee</a>
+        <h3>Employee đã xóa</h3>
     </div>
     <table class='table'>
         <thead>
@@ -26,21 +26,21 @@
                     <th>
                         {{! Sửa theo id }}
                         {{! link đến trang sửa  }}
-                        <a href='/user/{{this._id}}/edit' class='btn btn-danger'>Sửa</a>
+                        <a  class='btn btn-danger btn-restore' data-id={{this._id}} >Khôi phục</a>
                         <a
                             href=''
                             class='btn btn-danger'
                             data-toggle='modal'
                             data-id={{this._id}}
                             data-target='#delete-user_modal'
-                        >Xóa</a>
+                        >Xóa Vĩnh Viễn</a>
                     </th>
                 </tr>
                 {{else}}
                 <tr>
-                    <td colspan="5">
-                        Chưa có employee nào
-                        <a href="/user/create">Đăng Users</a>
+                    <td colspan="5" class="text-center">
+                        Thùng rác trống
+                        <a href="/me/stored/employee">Danh sách khóa học</a>
                     </td>
                 </tr>
             {{/each}}
@@ -58,10 +58,10 @@
                 </button>
             </div>
             <div class='modal-body'>
-                <p>Bạn chắc chắn muốn xóa khóa học này</p>
+                <p>Hành động này không thể khôi phục , bạn vẫn muốn xóa ???</p>
             </div>
             <div class='modal-footer'>
-                <button id='btn_delete-user' type='button' class='btn btn-danger'>Delete</button>
+                <button id='btn_deleteForever-user' type='button' class='btn btn-danger'>Xóa Vĩnh Viễn</button>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
             </div>
         </div>
@@ -73,10 +73,13 @@
 
 </form>
 
+<form method='POST' name='restore-user_Form'></form>
+
 <script>
-    document.addEventListener('DOMContentLoaded' , function(){ 
+   document.addEventListener('DOMContentLoaded' , function(){ 
       var useID;
       var deleteForm = document.forms['delete-user_Form']
+      var restoreForm = document.forms['restore-user_Form']
       console.log(deleteForm)
 
       $('#delete-user_modal').on('show.bs.modal',  function (event) {
@@ -87,12 +90,26 @@
 
 
         var deleteForm = document.forms['delete-user_Form']
-        var btnDelete = document.getElementById('btn_delete-user');
+        var btnDelete = document.getElementById('btn_deleteForever-user');
         btnDelete.onclick = function(){
                // action đến để xóa 
-               deleteForm.action = '/user/' + useID + '?_method=DELETE'
+               deleteForm.action = '/user/' + useID + '/forever?_method=DELETE'
                deleteForm.submit()
         }
+
+
+       
+        // Lấy ra tất cả các button khôi phục bằng jquery
+        var btnRestore = $('.btn-restore')
+            console.log(btnRestore)
+        btnRestore.click(function(){
+             const restoreID = $(this).data('id');
+             console.log(restoreID)
+             // Khôi phục dựa trên id
+             // action đến phương thức xóa
+             restoreForm.action = '/user/' + restoreID + '/restore?_method=PATCH'
+             restoreForm.submit()
+        })
 
     })
 </script>

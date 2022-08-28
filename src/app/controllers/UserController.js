@@ -25,7 +25,8 @@ class UserController {
             const formData = req.body;
             const user = new User(formData);
             user.save()
-                .then(() => res.redirect('/'))
+            // Link đến trang danh sách khóa học
+                .then(() => res.redirect('/me/stored/employee'))
                 .catch(() => {});
         } catch (error) {
             console.log(error.message);
@@ -64,7 +65,7 @@ class UserController {
         try {
             // Hàm updateOne : chỉnh sửa theo yêu cầu
             // Truyền vào là thằng id muốn chỉnh sửa , và cập nhật thằng body của nó
-            User.deleteOne({ _id: req.params.id }, req.body)
+            User.delete({ _id: req.params.id }, req.body)
 
                 // Thêm header location để quay trở lại trang trước
                 .then(() => res.redirect('back'))
@@ -72,6 +73,25 @@ class UserController {
         } catch (error) {
             console.log(error.message);
         }
+    }
+    // [PATCH]/restore/:id
+    // Khôi phục
+    restore(req ,res , next){
+            User.restore({ _id: req.params.id })
+
+                // Thêm header location để quay trở lại trang trước
+                .then(() => res.redirect('back'))
+                .catch(next);
+    }
+
+    // Xóa Vĩnh Viễn 
+    // [DELETE]/deleteOne/:id
+    DeletedForever(req, res, next) {
+            User.deleteOne({ _id: req.params.id }, req.body)
+
+                // Thêm header location để quay trở lại trang trước
+                .then(() => res.redirect('back'))
+                .catch(next);
     }
 }
 

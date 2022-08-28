@@ -11,6 +11,14 @@ class MeController {
             })
             .catch((error) => next(error));
     }
+
+    trashemployee(req , res, next){
+        User.findDeleted({})
+        .then((users) => {
+            res.render('me/trash-employee', { users: multipleMongooseToObject(users) });
+        })
+        .catch((error) => next(error));
+    }
 }
 
 // Tạo một đối tượng và export ra ngoài
