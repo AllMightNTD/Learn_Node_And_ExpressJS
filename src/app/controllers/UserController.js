@@ -34,6 +34,7 @@ class UserController {
 
     // Hiển thị form chỉnh sửa
     // GET/users/:id/edit
+    // Chỉnh sửa theo ID
     edit(req, res, next) {
         User.findById(req.params.id)
             .then((user) => {
@@ -44,12 +45,29 @@ class UserController {
     }
 
     // [PUT]/users/:id
+    // Cập nhật theo ID
     async Update(req, res, next) {
         try {
             // Hàm updateOne : chỉnh sửa theo yêu cầu
             // Truyền vào là thằng id muốn chỉnh sửa , và cập nhật thằng body của nó
             User.updateOne({ _id: req.params.id }, req.body)
                 .then(() => res.redirect('/me/stored/employee'))
+                .catch(next);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    // [DELETE]/users/:id
+    // Xóa theo ID
+    Delete(req, res, next) {
+        try {
+            // Hàm updateOne : chỉnh sửa theo yêu cầu
+            // Truyền vào là thằng id muốn chỉnh sửa , và cập nhật thằng body của nó
+            User.deleteOne({ _id: req.params.id }, req.body)
+
+                // Thêm header location để quay trở lại trang trước
+                .then(() => res.redirect('back'))
                 .catch(next);
         } catch (error) {
             console.log(error.message);
