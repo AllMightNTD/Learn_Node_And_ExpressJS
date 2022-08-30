@@ -5,11 +5,31 @@ const { mongooseToObject, multipleMongooseToObject } = require('../../util/mongo
 class MeController {
     // [GET] , me/stored
     storeemployee(req, res, next) {
-        User.find({})
-            .then((users) => {
-                res.render('me/stored-employee', { users: multipleMongooseToObject(users) });
-            })
-            .catch((error) => next(error));
+
+        // Lấy ra tất cả thằng promise  
+        // Tránh việc bất đồng bộ 
+
+        // Số phần tử xóa : countDocumentsDeleted 
+        Promise.all([User.find({}) , User.countDocumentsDeleted()])
+           .then(([users , deletedCount]) =>
+                 res.render('me/stored-employee', {
+                    deletedCount , 
+                    users: multipleMongooseToObject(users),
+                 }),
+            )
+           .catch(next)
+
+        // User.countDocumentsDeleted()
+        //   .then((deletedCount)=>{
+        //     console.log(deletedCount)
+        //   })
+        //   .catch(() => {})
+
+        // User.find({})
+        //     .then((users) => {
+        //         res.render('me/stored-employee', { users: multipleMongooseToObject(users) });
+        //     })
+        //     .catch((error) => next(error));
     }
 
     trashemployee(req , res, next){

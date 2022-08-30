@@ -8,7 +8,7 @@
             <tr>
                 <th scope='col'>#</th>
                 <th scope='col'>Name</th>
-                <th scope='col'>Thời gian tạo</th>
+                <th scope='col'>Thời gian xóa</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,7 +22,7 @@
                     {{! Gọi hàm sum , chức năng cộng biến index lên 1 }}
                     <th scope='col'>{{sum @index 1}}</th>
                     <th scope='col'>{{this.name}}</th>
-                    <th scope='col'>{{this.createdAt}}</th>
+                    <th scope='col'>{{this.deletedAt}}</th>
                     <th>
                         {{! Sửa theo id }}
                         {{! link đến trang sửa  }}
