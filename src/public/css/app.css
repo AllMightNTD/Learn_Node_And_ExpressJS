@@ -13,3 +13,6 @@ img {
     margin-right: 5px;
     object-fit: cover;
 }
+.select-all_options {
+    width: 130px;
+}

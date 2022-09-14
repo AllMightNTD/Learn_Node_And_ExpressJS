@@ -93,6 +93,22 @@ class UserController {
                 .then(() => res.redirect('back'))
                 .catch(next);
     }
+    // [POST]/users/handle-form-action
+    handleFormAction(req , res , next){
+         switch(req.body.action){
+            case 'delete':
+                // Xóa theo mảng ID chuyền lên
+                // Xóa xong quay lại
+                User.delete({ _id: { $in : req.body.usersID } })
+
+                // Thêm header location để quay trở lại trang trước
+                .then(() => res.redirect('back'))
+                .catch(next);
+                break
+            default:
+                res.json({message: 'Action invalid'})
+         }
+    }
 }
 
 // Tạo một đối tượng và export ra ngoài

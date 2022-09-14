@@ -6,6 +6,8 @@ const { route } = require('./news.js');
 router.get('/create', userController.create);
 router.post('/store', userController.store);
 
+router.post('/handle-form-action' , userController.handleFormAction)
+
 // Sửa
 router.put('/:id', userController.Update);
 

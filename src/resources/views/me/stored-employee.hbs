@@ -1,12 +1,27 @@
-<div class='mt-4'>
-    <div>
+{{!-- Hành vi không rõ ràng => dùng POST --}}
+<form class='mt-4' name="container_form" method="POST" action="/user/handle-form-action" >
+    <form>
         <h3>Khóa học của tôi</h3>
         {{!-- Thêm số sản phẩm đã xóa --}}
         <a href="/me/trash/employee">Thùng rác ({{deletedCount}})</a>
+         <div class="mt-4 d-flex align-items-center mb-4">
+             <div class="form-check">
+     <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+     <label class="form-check-label" for="checkbox-all">
+       Chọn tất cả
+      </label>
     </div>
+    {{!-- Không chọn option => không select được vì có thằng required --}}
+        <select class="form-control form-control-sm  select-all_options mr-4 ml-4 " name="action" required >
+          <option value="">Hành Động</option>
+          <option value="delete">Xóa</option>
+        </select>
+        <button id="checkall-submit-btn" class="btn btn-sm btn-primary disabled">Thuc hien</button>
+         </div>
     <table class='table'>
         <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope='col'>#</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Thời gian tạo</th>
@@ -21,6 +36,11 @@
                     {{! sum : hàm đã định nghĩa bằng template engine }}
                     {{! 1 là đối số }}
                     {{! Gọi hàm sum , chức năng cộng biến index lên 1 }}
+                    <th scope="col">
+                        <div class="form-check">
+                         <input class="form-check-input" type="checkbox" value={{this._id}} name="usersID[]">
+                           </div>
+                    </th>
                     <th scope='col'>{{sum @index 1}}</th>
                     <th scope='col'>{{this.name}}</th>
                     <th scope='col'>{{this.createdAt}}</th>
@@ -47,7 +67,7 @@
             {{/each}}
         </tbody>
     </table>
-</div>
+</form>
 
 <div class='modal' id='delete-user_modal' tabindex='-1' role='dialog'>
     <div class='modal-dialog' role='document'>
@@ -78,7 +98,13 @@
     document.addEventListener('DOMContentLoaded' , function(){ 
       var useID;
       var deleteForm = document.forms['delete-user_Form']
+      var container_form = document.forms['container_form']
+      var checkboxAll = document.getElementById('checkbox-all')
+      var usersItemcheckbox = $('input[name="usersID[]"')
+      var checkAllSubmitBtn = document.getElementById('checkall-submit-btn')
+      console.log(checkboxAll)
       console.log(deleteForm)
+      console.log(usersItemcheckbox)
 
       $('#delete-user_modal').on('show.bs.modal',  function (event) {
          var button = $(event.relatedTarget)
@@ -94,6 +120,47 @@
                deleteForm.action = '/user/' + useID + '?_method=DELETE'
                deleteForm.submit()
         }
-
+        checkboxAll.onchange = function(){
+           var isCheckedAll = ($(this).prop('checked'))
+           if(isCheckedAll){
+              usersItemcheckbox.prop('checked' , true)
+           }
+           else{
+               usersItemcheckbox.prop('checked' , false)
+           }
+           renderExcuteButton()
+        }
+        usersItemcheckbox.change(function(){
+            {{!-- Số lượng checkbox đang check có bằng số lượng tất cả checkbox không --}}
+            {{!-- Nếu không bằng => không check hết --}}
+            var isCheckedAll = usersItemcheckbox.length === $('input[name="usersID[]"]:checked').length
+            console.log(isCheckedAll)
+            if(isCheckedAll == false){
+              checkboxAll.checked = false;
+            }
+            else{
+                checkboxAll.checked = true;
+            }
+            renderExcuteButton()
+        })
+        {{!-- Re-render submit Button --}}
+        function renderExcuteButton(){
+            var checkedCount =  $('input[name="usersID[]"]:checked').length
+            console.log(checkedCount)
+            if(checkedCount > 0){
+                checkAllSubmitBtn.classList.remove('disabled')
+            }
+            else{
+                checkAllSubmitBtn.classList.add('disabled')
+            }
+        }
+        {{!-- Check all submit button  --}}
+         checkAllSubmitBtn.onclick = function(e){
+            var isSubmittable = checkAllSubmitBtn.classList.contains('disabled');
+            {{!-- Có class disabled => chặn k cho submit --}}
+            if(isSubmittable){
+             e.preventDefault();
+            }
+         }
     })
 </script>
