@@ -1,8 +1,8 @@
 // Link thằng news đến
-const newRouter = require('./news');
 const siteRowter = require('./site');
 const useRouter = require('./user');
 const MeRouter = require('./me');
+const HandleAccountUser = require('./AccountUser')
 
 // Route nhận vào thằng app từ bên file index chính ( express instance )
 function route(app) {
@@ -10,8 +10,7 @@ function route(app) {
 
     // req : là một object có các thuộc tính trong đó có query
     // Truy cập vào nó bằng req.query
-
-    app.use('/news', newRouter);
+    app.use('/accounts' , HandleAccountUser)
 
     app.use('/user', useRouter);
 

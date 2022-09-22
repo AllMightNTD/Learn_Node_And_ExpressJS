@@ -1,0 +1,41 @@
+<div>
+  <h1>Login</h1>
+   <form id="login">
+        <input type="text" placeholder="username" id="username"  value="">
+        <input type="password" placeholder="password" id="password"  value="">
+        <button type='submit' class='btn btn-primary' value="SubmitForm">Login</button>
+        <a href="/accounts/change-password">Change Password</a>
+    </form>
+</div>
+
+<script>
+     const form = document.getElementById('login')
+     form.addEventListener('submit' , login)
+
+     async function login(event){
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const result =  await fetch('/accounts/api/login' , {
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username , password
+            })
+        }).then((res) => res.json())
+        {{!-- Thành Công  --}}
+        if(result.status === 'ok'){
+            alert('Successfully')
+            console.log('Got the data ' , result.data)
+            console.log('Got the tokendata' , result.tokendata)
+            localStorage.setItem('token' , result.tokendata)
+            {{!-- Hiện mã lỗi --}}
+        }else{
+            alert(result.error)
+        }
+     }
+
+</script>

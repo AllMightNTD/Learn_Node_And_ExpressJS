@@ -1,0 +1,38 @@
+<div>
+  <h1>Registration</h1>
+   <form id="reg-form">
+        <input type="text" placeholder="username" id="username"  value="">
+        <input type="password" placeholder="password" id="password"  value="">
+        <button type='submit' class='btn btn-primary' value="SubmitForm">Submit</button>
+    </form>
+</div>
+
+<script>
+     const form = document.getElementById('reg-form')
+     form.addEventListener('submit' , SubmitEvent)
+
+     async function SubmitEvent(event){
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const result =  await fetch('/accounts/api/register' , {
+            method : 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username , password
+            })
+        }).then((res) => res.json())
+        {{!-- Thành Công  --}}
+        if(result.status === 'ok'){
+            alert('Successfully')
+
+            {{!-- Hiện mã lỗi --}}
+        }else{
+            alert(result.error)
+        }
+     }
+
+</script>

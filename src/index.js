@@ -5,8 +5,11 @@ const express = require('express');
 const xhbr = require('express-handlebars');
 
 const morgan = require('morgan');
+const bodyParser = require('body-parser')
 
 const routes = require('./routes/index.js');
+const bcrypt = require('bcryptjs')
+
 
 const db = require('./config/db/index.js');
 
@@ -20,7 +23,7 @@ const port = 5000;
 var methodOverride = require('method-override');
 
 app.use(methodOverride('_method'));
-
+app.use(bodyParser.json());
 // Trả về chính cái path của thư mục public
 app.use(express.static(path.join(__dirname, 'public')));
 
